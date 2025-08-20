@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Srichaphan Tennis Academy - Registration</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+            min-height: 100vh;
+            padding: 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideUp 1s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 50%, #ff6b6b 100%);
+            padding: 25px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: slide 15s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-50px); }
+            100% { transform: translateX(50px); }
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        .logo img {
+            width: 75px;
+            height: 75px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .header h2 {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 20px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .main-content {
+            padding: 40px;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .form-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cartoon-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .cartoon-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+
+        .tennis-cartoon {
+            width: 100%;
+            max-width: 250px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 3px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .tennis-cartoon:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .section-title {
+            color: #2d3748;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-title i {
+            color: #667eea;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.single {
+            grid-template-columns: 1fr;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 10px 16px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            background: white;
+            min-width: 120px;
+        }
+
+        .radio-item:hover,
+        .checkbox-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-color: #667eea;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #667eea;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .info-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .info-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .info-list li i {
+            color: #ffd700;
+            font-size: 18px;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+            margin: 30px 0;
+        }
+
+        /* iPad Landscape Optimizations */
+        @media screen and (max-width: 1024px) and (orientation: landscape) {
+            .container {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+            
+            .header {
+                padding: 20px 30px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .header h2 {
+                font-size: 18px;
+            }
+            
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .main-content {
+                padding: 30px;
+            }
+            
+            .form-section {
+                max-width: 100%;
+            }
+            
+            .cartoon-images {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .tennis-cartoon {
+                height: 150px;
+            }
+        }
+
+        /* Mobile Portrait */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .logo-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .main-content {
+                padding: 25px;
+            }
+            
+            .cartoon-images {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .tennis-cartoon {
+                height: 160px;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .radio-group,
+            .checkbox-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-shape:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            width: 30px;
+            height: 30px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            width: 40px;
+            height: 40px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation-delay: 3s;
+        }
+
+        .floating-shape:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            width: 25px;
+            height: 25px;
+            background: #667eea;
+            border-radius: 50%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+                opacity: 0.1;
+            }
+            25% { 
+                transform: translateY(-30px) rotate(90deg); 
+                opacity: 0.2;
+            }
+            50% { 
+                transform: translateY(-20px) rotate(180deg); 
+                opacity: 0.15;
+            }
+            75% { 
+                transform: translateY(-40px) rotate(270deg); 
+                opacity: 0.25;
+            }
+        }
+    
+    .cartoon-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .tennis-cartoon {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    </style>
+</head>
+<body>
+<div class="floating-elements">
+<div class="floating-shape"></div>
+<div class="floating-shape"></div>
+<div class="floating-shape"></div>
+</div>
+<div class="container">
+<div class="header">
+<div class="logo-section">
+<div class="logo">
+<img alt="Thailand Logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPCEtLSBTaW1wbGlmaWVkIHZlcnNpb24gb2YgdGhlIGZpcnN0IGxvZ28gLS0+CiAgPHBhdGggZD0iTTUwIDEwIEwzNSAzMCBMMTUgMzAgTDE1IDcwIEwzNSA3MCBMNTCOSA5MCEL2NSA3MCEJ4NSA3MCEJ4NSAzMCBMNjUgMzAgWiIgZmlsbD0iI2ZmNmI2YiIvPgogIDxyZWN0IHg9IjQwIiB5PSIzNSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMwIiBmaWxsPSJ3aGl0ZSIvPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iMjUiIHI9IjMiIGZpbGw9IndoaXRlIi8+CiAgPHRleHQgeD0iNTAiIHk9IjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI2IiBmb250LXdlaWdodD0iYm9sZCI+VEhBSUxBTkQ8L3RleHQ+Cjwvc3ZnPg=="/>
+</div>
+<div class="logo">
+<img alt="SCPTA Logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDUiIGZpbGw9IiMyMmM1NWUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjMwIiBmaWxsPSJ3aGl0ZSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI0NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2RjMjYyNiIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiPgogICAgPHRzcGFuPjx0c3BhbiB4PSI1MCIgZHk9IjAiPlNDUFRBPC90c3Bhbj48L3RzcGFuPgogIDwvdGV4dD4KICA8cGF0aCBkPSJNMzAgNTUgUTUwIDY1IDcwIDU1IiBzdHJva2U9IiMyMmM1NWUiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzIyYzU1ZSIgZm9udC1zaXplPSI4IiBmb250LXdlaWdodD0iYm9sZCI+VGhhaWxhbmQ8L3RleHQ+Cjwvc3ZnPg=="/>
+</div>
+</div>
+<h1>Physical Fitness and Technical Skill Assessment</h1>
+<h2>Srichaphan Tennis Academy</h2>
+</div>
+<div class="main-content">
+<div class="form-section">
+<form>
+<div class="section-title">
+<i class="fas fa-user"></i>
+                        ข้อมูลนักเทนนิส (Player Information)
+                    </div>
+<div class="form-row">
+<div class="form-group">
+<label for="firstName">ชื่อ (First name):</label>
+<input id="firstName" name="firstName" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="lastName">นามสกุล (Last name):</label>
+<input id="lastName" name="lastName" required="" type="text"/>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label>เพศ (Gender):</label>
+<div class="radio-group">
+<div class="radio-item">
+<input id="male" name="gender" type="radio" value="male"/>
+<label for="male">ชาย (Male)</label>
+</div>
+<div class="radio-item">
+<input id="female" name="gender" type="radio" value="female"/>
+<label for="female">หญิง (Female)</label>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="birthDate">วันเกิด (Date of Birth):</label>
+<input id="birthDate" name="birthDate" required="" type="date"/>
+</div>
+</div>
+<div class="divider"></div>
+<div class="section-title">
+<i class="fas fa-heartbeat"></i>
+                        ข้อมูลสุขภาพ (Health Information)
+                    </div>
+<div class="form-group">
+<label>โรคประจำตัว (Chronic Disease):</label>
+<div class="radio-group">
+<div class="radio-item">
+<input id="noneDisease" name="chronicDisease" type="radio" value="none"/>
+<label for="noneDisease">ไม่มี (None)</label>
+</div>
+<div class="radio-item">
+<input id="hasDisease" name="chronicDisease" type="radio" value="yes"/>
+<label for="hasDisease">มี (Yes)</label>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="diseaseDetail">หากมี กรุณาระบุ (If yes, please specify):</label>
+<textarea id="diseaseDetail" name="diseaseDetail" placeholder="กรุณาระบุรายละเอียดโรคประจำตัว..."></textarea>
+</div>
+
+</form>
+</div>
+<div class="cartoon-section">
+<div class="cartoon-images">
+<img alt="Kids playing tennis" class="tennis-cartoon" src="./cartoon.webp"/>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
